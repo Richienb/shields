@@ -34,7 +34,7 @@
     "glob": "^7.1.1",
     "is-css-color": "^1.0.0",
     "joi": "14.3.0",
-    "js-yaml": "^3.11.0",
+    "js-yaml": "^3.13.1",
     "jsonpath": "~1.0.1",
     "lodash.countby": "^4.6.0",
     "lodash.mapkeys": "^4.6.0",
@@ -55,7 +55,8 @@
     "simple-icons": "1.9.15",
     "xml2js": "~0.4.16",
     "xmldom": "~0.1.27",
-    "xpath": "~0.0.27"
+    "xpath": "~0.0.27",
+    "snyk": "^1.346.0"
   },
   "scripts": {
     "coverage:test:frontend": "BABEL_ENV=test nyc node_modules/mocha/bin/_mocha --require @babel/polyfill --require @babel/register --require mocha-yaml-loader \"frontend/**/*.spec.js\"",
@@ -94,7 +95,9 @@
     "now-start": "node server",
     "prestart": "npm run depcheck && npm run defs && npm run features",
     "start": "concurrently --names server,frontend \"ALLOWED_ORIGIN=http://localhost:3000 npm run start:server\" \"BASE_URL=http://[::]:8080 BABEL_ENV=dev-prod next dev\"",
-    "refactoring-report": "node scripts/refactoring-cli.js"
+    "refactoring-report": "node scripts/refactoring-cli.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "lint-staged": {
     "**/*.js": [
@@ -219,5 +222,6 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "snyk": true
 }
